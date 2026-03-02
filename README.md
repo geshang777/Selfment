@@ -3,7 +3,7 @@
 <a href='https://arxiv.org/abs/2602.23759'><img src='https://img.shields.io/badge/ArXiv-Paper-red' /></a>
 <a href='https://huggingface.co/geshang/Selfment'><img src='https://img.shields.io/badge/HuggingFace-Model-yellow' /></a>
 
-https://github.com/user-attachments/assets/611641b4-22c9-4824-8a61-a5e5c73daf31
+https://github.com/user-attachments/assets/3c76be7a-91e0-4057-a15c-a26e0ba99d27
 
 Introducing **Selfment**, a fully self-supervised framework that segments foreground objects directly from raw images without human labels, pretrained segmentation models, or any post-processing. 
 
