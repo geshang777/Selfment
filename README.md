@@ -1,4 +1,4 @@
-# Learning Accurate Segmentation Purely From Self-Supervision
+# Learning Accurate Segmentation Purely from Self-Supervision
 
 <a href='https://arxiv.org/abs/2602.23759'><img src='https://img.shields.io/badge/ArXiv-Paper-red' /></a>
 <a href='https://huggingface.co/geshang/Selfment'><img src='https://img.shields.io/badge/HuggingFace-Model-yellow' /></a>
@@ -89,7 +89,7 @@ If you find our work helpful, please cite:
 
 ```bibtex
 @article{you2026learning,
-  title={Learning Accurate Segmentation Purely From Self-Supervision},
+  title={Learning Accurate Segmentation Purely from Self-Supervision},
   author={You, Zuyao and Wu, Zuxuan and Jiang, Yu-Gang},
   journal={arXiv preprint arXiv:2602.23759},
   year={2026}
