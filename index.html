@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Learning Accurate Segmentation Purely from Self-Supervision">
+  <meta name="keywords" content="Selfment, Self-supervised Learning, Unsupervised Saliency Detection, Unsupervised Camouflaged Object Detection, Object Segmentation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learning Accurate Segmentation Purely from Self-Supervision</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <style>
+    body {
+      background: #fff;
+    }
+
+    .section.section-gray {
+      background: #f5f5f5;
+    }
+
+    .section.section-white {
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            Learning Accurate Segmentation Purely from Self-Supervision
+          </h1>
+          <div class="publication-venue-container">
+            <p class="subtitle is-4 publication-venue">ECCV 2026</p>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=zh-CN&amp;user=X8Kh8uoAAAAJ">Zuyao You</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=7t12hVkAAAAJ&amp;hl=zh-CN&amp;oi=ao">Zuxuan Wu</a><sup>1,2,*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=f3_FP8AAAAAJ">Yu-Gang Jiang</a><sup>1,2,*</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Institute of Trustworthy Embodied AI, Fudan University</span><br>
+            <span class="author-block"><sup>2</sup>Shanghai Key Laboratory of Multimodal Embodied AI</span><br>
+            <span class="author-block"><sup>*</sup>Corresponding authors</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2602.23759" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/geshang777/Selfment" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/geshang/Selfment" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-server"></i></span>
+                  <span>Model</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#BibTeX" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-quote-right"></i></span>
+                  <span>BibTeX</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-gray" id="abstract">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="publication-image">
+          <video class="hover-zoom" autoplay muted loop playsinline controls poster="static/images/teaser.png">
+            <source src="static/images/output_2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <figcaption class="has-text-grey is-size-6 mt-2">
+            Selfment generates detailed and accurate saliency maps without human-annotated labels or post-processing.
+          </figcaption>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            In this work, we introduce Selfment, a fully self-supervised framework that segments foreground objects directly from raw images without human labels, pretrained segmentation models, or any post-processing. Selfment begins by constructing a patch-level affinity graph from self-supervised features and applying Normalized Cut to obtain a coarse foreground-background separation. We then propose iterative patch optimization, a feature-space refinement algorithm that progressively enhances spatial coherence and semantic consistency. The resulting masks then serve as supervisory signals for training a lightweight segmentation head using contrastive and region-consistency objectives, enabling the model to learn stable object representations. Despite its simplicity and complete absence of manual supervision, Selfment sets new state-of-the-art results across multiple benchmarks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-white" id="method">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="publication-image">
+          <img src="static/images/selfment_framework.png" alt="Overview of the Selfment pipeline." class="hover-zoom">
+          <figcaption class="has-text-grey is-size-6 mt-2">
+            Overview of the Selfment pipeline.
+          </figcaption>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            Selfment starts from dense patch features extracted by a frozen self-supervised backbone. These features define a patch-level affinity graph, where Normalized Cut provides a semantically grounded but coarse foreground-background partition. To improve mask quality, IPO repeatedly updates foreground and background centroids in the normalized feature space and realigns patch labels according to semantic similarity while preserving orientation consistency. The resulting pseudo-masks supervise a compact segmentation head trained with binary cross-entropy, Dice, and contrastive objectives. This converts raw self-supervised features into stable object-aware representations without annotated masks, external segmentation models such as SAM, or test-time refinement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-gray" id="results">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <figure class="image mb-6">
+          <img src="static/images/sod_vis.png" alt="Qualitative comparison on unsupervised saliency detection." class="hover-zoom">
+          <figcaption class="has-text-grey is-size-6 mt-2">Qualitative comparison on unsupervised saliency detection.</figcaption>
+        </figure>
+        <figure class="image mb-6">
+          <img src="static/images/cod_vis.png" alt="Qualitative comparison on camouflaged object detection." class="hover-zoom">
+          <figcaption class="has-text-grey is-size-6 mt-2">Qualitative comparison on camouflaged object detection.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-white quantitative-results" id="quantitative-results">
+  <div class="container">
+    <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+    <div id="results-carousel" class="carousel results-carousel">
+      <div class="item">
+        <figure>
+          <img src="./static/images/sod.jpg" alt="Quantitative comparison on unsupervised saliency detection." class="hover-zoom quantitative-image">
+          <figcaption class="has-text-grey is-size-6 mt-3 has-text-centered">
+            Quantitative results on unsupervised saliency detection benchmarks.
+          </figcaption>
+        </figure>
+      </div>
+      <div class="item">
+        <figure>
+          <img src="./static/images/cod.jpg" alt="Quantitative comparison on camouflaged object detection." class="hover-zoom quantitative-image">
+          <figcaption class="has-text-grey is-size-6 mt-3 has-text-centered">
+            Quantitative results on camouflaged object detection benchmarks.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{you2026learning,
+  title   = {Learning Accurate Segmentation Purely from Self-Supervision},
+  author  = {You, Zuyao and Wu, Zuxuan and Jiang, Yu-Gang},
+  journal = {ECCV},
+  year    = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>Template from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, thanks!</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
