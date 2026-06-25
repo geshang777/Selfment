@@ -5,6 +5,7 @@ __pycache__/
 .DS_Store
 .idea/
 .vscode/
+.opencode/
 
 wandb/
 datasets/
@@ -14,6 +15,7 @@ feature_cache/
 inference_results/
 demo_outputs/
 saliency_results/
+selfment_train/
 cache/
 test/
 

@@ -1,6 +1,7 @@
 # Learning Accurate Segmentation Purely from Self-Supervision
 
 <a href='https://arxiv.org/abs/2602.23759'><img src='https://img.shields.io/badge/ArXiv-Paper-red' /></a>
+<a href='https://geshang777.github.io/Selfment/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>
 <a href='https://huggingface.co/geshang/Selfment'><img src='https://img.shields.io/badge/HuggingFace-Model-yellow' /></a>
 
 https://github.com/user-attachments/assets/3c76be7a-91e0-4057-a15c-a26e0ba99d27
@@ -8,14 +9,18 @@ https://github.com/user-attachments/assets/3c76be7a-91e0-4057-a15c-a26e0ba99d27
 Introducing **Selfment**, a fully self-supervised framework that segments foreground objects directly from raw images without human labels, pretrained segmentation models, or any post-processing. 
 
 ---
+## News
 
-## Todo
+* `2026.06.25` 🔥🔥🔥 Full code of Selfment has been released! Hope you enjoy it!
+* `2026.06.18` 🔥🔥🔥 Selfment has been accepted by ECCV 2026!
+ 
+## TODOs
 
 - [x] Release paper
 - [x] DINOv3 PatchHead
 - [x] Inference code
 - [x] Multi-GPU eval code
-- [ ] Multi-GPU training code
+- [x] Multi-GPU training code
 
 
 
@@ -53,6 +58,26 @@ python demo/demo.py \
 
 ---
 
+### Training
+
+Single-node multi-GPU training with `torchrun`:
+
+```bash
+torchrun --standalone --nproc_per_node=8 --master_port=29511 train.py \
+  --input_dir datasets/DUTS/DUTS-TR/DUTS-TR-Image \
+  --output_dir ./selfment_train \
+  --cache_dir ./feature_cache \
+  --dino_type dinov3 \
+  --dino_repo ./dino/dinov3 \
+  --dino_model_name dinov3_vit7b16 \
+  --dino_weights /path/to/dinov3-weights.pth \
+  --dino_depth 40 \
+  --img_size 768 \
+  --epochs 3 \
+  --lr 1e-3 \
+  --embed_dim 128 \
+  --max_images 1000
+```
 
 ### Evaluation
 
@@ -91,7 +116,7 @@ If you find our work helpful, please cite:
 @article{you2026learning,
   title={Learning Accurate Segmentation Purely from Self-Supervision},
   author={You, Zuyao and Wu, Zuxuan and Jiang, Yu-Gang},
-  journal={arXiv preprint arXiv:2602.23759},
+  journal={ECCV},
   year={2026}
 }
 ```
